@@ -8,7 +8,7 @@ post_urls = patterns('',
 )
 
 urlpatterns = patterns('',
-    url(r'^posts', include(post_urls)),
+    url(r'^api', include(post_urls)),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns) 
