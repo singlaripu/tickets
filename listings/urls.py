@@ -8,6 +8,7 @@ post_urls = patterns('',
 )
 
 urlpatterns = patterns('',
+	url(r'^$', 'listings.views.home', name="home"),
     url(r'^api', include(post_urls)),
 )
 
