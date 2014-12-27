@@ -1,4 +1,5 @@
 *.pyc
 .*swp
-env/
-listings/.idea/
+env
+listings/.idea
+.env
