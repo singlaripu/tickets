@@ -10,7 +10,7 @@ import os
 # MongoDB connection init
 client = pymongo.MongoClient(os.environ['MONGOLAB_URI'])
 mongodb = client.get_default_database()
-collection = mongodb['images']
+
 
 # Cloudinary connection init
 # Uploaded image url- https://res.cloudinary.com/hscc9cmcb/image/upload/ET00014979.jpg
@@ -28,6 +28,7 @@ cloudinary.config(
 
 @shared_task
 def upload(l):
+    collection = mongodb['images']
     for id in l:
         try:
             result = collection.find({'id':id}).next()
