@@ -13,7 +13,9 @@ import os, sys, pymongo, urllib, json, pytz
 from datetime import datetime, date, time
 
 from .utility import *
+import tasks
 
+# MongoDB connection init
 client = pymongo.MongoClient(os.environ['MONGOLAB_URI'])
 mongodb = client.get_default_database()
 
@@ -145,6 +147,8 @@ def get_movies(request, city):
                     'timestamp' : now
                 })
 
+        tasks.upload.delay([i['code'] for i in data])
+
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 
@@ -222,6 +226,8 @@ def get_events(request, city, category):
                     'data' : data,
                     'timestamp' : now
                 })
+
+        tasks.upload.delay([i['code'] for i in data])
 
     return HttpResponse(json.dumps(data), content_type="application/json")
 

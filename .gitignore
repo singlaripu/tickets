@@ -3,3 +3,4 @@
 env
 listings/.idea
 .env
+*.db
